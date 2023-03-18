@@ -1,0 +1,169 @@
+import "./src/sass/style.scss"
+import "@fontsource/inter/latin-100.css"
+import "@fontsource/inter/latin-200.css"
+import "@fontsource/inter/latin-300.css"
+import "@fontsource/inter/latin-400.css"
+import "@fontsource/inter/latin-500.css"
+import "@fontsource/inter/latin-600.css"
+import "@fontsource/inter/latin-700.css"
+import "@fontsource/inter/latin-800.css"
+import "@fontsource/inter/latin-900.css"
+import * as bootstrap from "bootstrap"
+import tooltip from "./directives/tooltip"
+import popover from "./directives/popover"
+import scrollspy from "./directives/scrollspy"
+import ktbuttons from "./directives/ktbuttons"
+import ktrotate from "./directives/ktrotate"
+import ktmenu from "./directives/ktmenu"
+import kttoggle from "./directives/kttoggle"
+import ktscroll from "./directives/ktscroll"
+import ktdrawer from "./directives/ktdrawer"
+
+import KTUtil from "./src/js/components/util"
+import KTApp from "./src/js/components/appcustomvue"
+import KTEventHandler from "./src/js/components/event-handler"
+import KTBlockUI from "./src/js/components/blockui"
+import KTCookie from "./src/js/components/cookie"
+import KTMenu from "./src/js/components/menu"                              
+// import KTDialer from "./src/js/components/dialer"                        //Replaced by Vue
+import KTDrawer from "./src/js/components/drawer"
+// import KTFeedback from "./src/js/components/feedback"                  //???
+//import KTImageInput from "./src/js/components/image-input"              //Memory leak detected
+// import KTPasswordMeter from "./src/js/components/password-meter"       //Memory leak detected.
+import KTScroll from "./src/js/components/scroll"
+// import KTScrolltop from "./src/js/components/scrolltop"               //Replaced by vue
+// import KTSearch from "./src/js/components/search"                     //Memory leak detected.
+// import KTStepper from "./src/js/components/stepper"                   //Memory leak detected.
+// import KTSticky from "./src/js/components/sticky"                     //Replaced by bootstrap sticky
+// import KTSwapper from "./src/js/components/swapper"                   //Replaced by bootstrap
+import KTToggle from "./src/js/components/toggle"
+
+
+export default {
+  // The install method will be called with the Vue constructor as
+  // the first argument, along with possible options
+  install(Vue) {
+
+    //Global Keen objects
+    window.KTUtil = KTUtil
+    window.KTApp = KTApp
+    window.KTEventHandler = KTEventHandler
+    window.KTBlockUI = KTBlockUI
+    window.KTCookie = KTCookie
+    window.KTMenu = KTMenu
+    window.KTToggle = KTToggle
+    window.KTDrawer = KTDrawer
+    window.KTScroll = KTScroll
+
+
+    //Bootstrap configuration
+    bootstrap.Modal.Default.backdrop = "static"
+
+    //Adding Directives
+    Vue.directive("tooltip", tooltip);
+    Vue.directive("popover", popover);
+    Vue.directive("scrollspy", scrollspy)
+    Vue.directive("ktbuttons", ktbuttons)
+    Vue.directive("ktrotate", ktrotate)
+    Vue.directive("ktmenu", ktmenu)
+    Vue.directive("kttoggle", kttoggle)
+    Vue.directive("ktscroll", ktscroll)
+    Vue.directive("ktdrawer", ktdrawer)
+
+    //Adding Components
+    Vue.component("vue-datatable", () => import("./components/VueDatatable.vue"))
+
+    //Adding global methods
+    Vue.prototype.$globalAdd = function (event, accessor){
+      const accesorlista = accessor ? accessor.split(".")[0] : "lista"
+      const accesorid = accessor?.split(".")[1] ? accessor?.split(".")[1] : "id"
+      if(typeof this.$data[accesorlista] === "undefined") return console.error(`Unable to find this.$data.${accesorlista} on current component, please specify the data to continue...`)
+      if(typeof event[accesorid] === "undefined") return console.error(`Property "${accesorid}" does not exist on this.$data.${accesorlista}, please specify the correct id name`)
+      const index = this.$data[accesorlista].findIndex(item => item[accesorid] === event[accesorid])
+      if(index !== -1) return console.error(`Unable to add data, An item with ${accesorid} ${event[accesorid]} already exists in this.$data.${accesorlista}`)
+      this.$data[accesorlista].push(event)
+    }
+    Vue.prototype.$globalEdit = function (event, accessor){
+      const accesorlista = accessor ? accessor.split(".")[0] : "lista"
+      const accesorid = accessor?.split(".")[1] ? accessor?.split(".")[1] : "id"
+      if(typeof this.$data[accesorlista] === "undefined") return console.error(`Unable to find this.$data.${accesorlista} on current component, please specify the data to continue...`)
+      if(typeof event[accesorid] === "undefined") return console.error(`Property "${accesorid}" does not exist on this.$data.${accesorlista}, please specify the correct id name`)
+      const index = this.$data[accesorlista].findIndex(item => item[accesorid] === event[accesorid])
+      if(index === -1) return console.error(`Unable to edit data, The item with ${accesorid} ${event[accesorid]} does not exist in this.$data.${accesorlista}`)
+      this.$data[accesorlista].splice(index, 1, event)
+    }
+    Vue.prototype.$globalDelete = async function (url, id, name, accessor) {
+      const question = await swal.fire({
+        title: `¿Desea eliminar el elemento: ${name}?`,
+        text: "Esta acción es irreversible",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "¡Si, eliminar!",
+        cancelButtonText: '¡No, cancelar!',
+        showLoaderOnConfirm: true,
+        preConfirm(){
+          const finalURL = /[^&?]*?=[^&?]*/.test(url) ? url + id : url.replace(/\/$/, "") + "/" + id;
+          return axios.delete(finalURL).catch(() => {
+            swal.showValidationMessage("Ha ocurrido un error, por favor inténtelo de nuevo")
+          })
+        }
+      });
+      if(!question.isConfirmed) return
+      const accesorlista = accessor ? accessor.split(".")[0] : "lista"
+      const accesorid = accessor?.split(".")[1] ? accessor?.split(".")[1] : "id"
+      if(typeof this.$data[accesorlista] === "undefined") return console.error(`Unable to find this.$data.${accesorlista} on current component, please specify the data to continue...`)
+      if(this.$data[accesorlista].length === 0) return console.error(`You can't delete data on an empty array! this.$data.${accesorlista} is empty!`)
+      if(typeof this.$data[accesorlista][0][accesorid] === "undefined") return console.error(`Property "${accesorid}" does not exist on this.$data.${accesorlista}, please specify the correct id name`)
+      const index = this.$data[accesorlista].findIndex(item => item[accesorid] === id)
+      if(index === -1) return console.error(`Unable to remove data, The item with ${accesorid} ${id} does not exist in this.$data.${accesorlista}`)
+      await swal.fire("Success", `${name} eliminado con éxito`, "success")
+      this.$data[accesorlista].splice(index, 1)
+    }
+    Vue.prototype.$setupTemplate = function () {
+      document.body.classList.add("app-default")
+      document.body.setAttribute("data-kt-app-layout", "dark-sidebar")
+      document.body.setAttribute("data-kt-app-header-fixed", "true")
+      document.body.setAttribute("data-kt-app-sidebar-enabled", "true")
+      document.body.setAttribute("data-kt-app-sidebar-fixed", "true")
+      document.body.setAttribute("data-kt-app-sidebar-hoverable", "true")
+      document.body.setAttribute("data-kt-app-sidebar-push-header", "true")
+      document.body.setAttribute("data-kt-app-sidebar-push-toolbar", "true")
+      document.body.setAttribute("data-kt-app-sidebar-push-footer", "true")
+      document.body.setAttribute("data-kt-app-toolbar-enabled", "true")
+      document.body.id = "kt_app_body"
+      const approot = document.getElementById("app")
+      const classes = ["d-flex", "flex-column", "flex-root", "app-root"]
+      approot.classList.add(...classes)
+    }
+    Vue.prototype.$destroyTemplate = function () {
+      document.body.classList.remove("app-default")
+      document.body.removeAttribute("data-kt-app-layout")
+      document.body.removeAttribute("data-kt-app-header-fixed")
+      document.body.removeAttribute("data-kt-app-sidebar-enabled")
+      document.body.removeAttribute("data-kt-app-sidebar-fixed")
+      document.body.removeAttribute("data-kt-app-sidebar-hoverable")
+      document.body.removeAttribute("data-kt-app-sidebar-push-header")
+      document.body.removeAttribute("data-kt-app-sidebar-push-toolbar")
+      document.body.removeAttribute("data-kt-app-sidebar-push-footer")
+      document.body.removeAttribute("data-kt-app-toolbar-enabled")
+      document.body.id = ""
+      const approot = document.getElementById("app")
+      const classes = ["d-flex", "flex-column", "flex-root", "app-root"]
+      approot.classList.remove(...classes)
+    }
+    Vue.prototype.$setupBlankPage = function () {
+      document.body.classList.add("app-blank")
+      document.body.id = "kt_body"
+      const approot = document.getElementById("app")
+      const classes = ["d-flex", "flex-column", "flex-root"]
+      approot.classList.add(...classes)
+    }
+    Vue.prototype.$destroyBlankPage = function () {
+      document.body.classList.remove("app-blank")
+      document.body.id = ""
+      const approot = document.getElementById("app")
+      const classes = ["d-flex", "flex-column", "flex-root"]
+      approot.classList.remove(...classes)
+    }
+  }
+}

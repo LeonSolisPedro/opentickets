@@ -1,0 +1,107 @@
+//
+// To make future updates easier consider overriding the global variables from _variables.bootstrap.scss and _variables.custom.scss for current demo in this file.
+// Note that this file is included first and variables defined in _variables.bootstrap.scss and _variables.custom.scss
+// are not accessible in this file but you can override any global variable as shown below:
+//
+
+// Theme colors
+// Primary
+$primary:       									#3E97FF;
+$primary-active:    								#2884EF;
+$primary-light:    								    #EEF6FF;
+$primary-light-dark:							    #212E48;
+$primary-inverse:  									#FFFFFF;
+
+// Success
+$success:       									#50CD89;
+$success-active:    								#47BE7D;
+$success-light:    									#E8FFF3;
+$success-light-dark:								#1C3238;
+$success-inverse:  									#FFFFFF;
+
+// Info
+$info:       									    #7239EA;
+$info-active:    									#5014D0;
+$info-light:    									#F8F5FF;
+$info-light-dark: 									#2F264F;
+$info-inverse:  									#FFFFFF;
+
+// Danger
+$danger:       									    #F1416C;
+$danger-active:    									#D9214E;
+$danger-light:    									#FFF5F8;
+$danger-light-dark:									#3A2434;
+$danger-inverse:  									#FFFFFF;
+
+// Warning
+$warning:       									#FFC700;
+$warning-active:    								#F1BC00;
+$warning-light:    									#FFF8DD;
+$warning-light-dark:								#392F28;
+$warning-inverse:  									#FFFFFF;
+
+// Vuelidate
+.invalid-feedback {
+  color: #b02a37 !important;
+  display: block !important;
+}
+[data-theme="dark"] .invalid-feedback {
+  color: #ea868f !important;
+}
+
+// Card datatables
+.datatable .card-header  {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+.datatable .card-title  {
+  font-weight: 600 !important;
+}
+.datatable .card-toolbar  {
+    gap: 1rem;
+}
+.datatable .card-body {
+  padding-top: 0;
+}
+
+
+// Datatables
+.datatable .dataTables_wrapper {
+  margin-top: -15px;
+}
+.dt-custom {
+  font-size: 1.075rem;
+  vertical-align: middle;
+}
+.dt-custom th:first-child,
+.dt-custom td:first-child {
+  padding-left: 1.75rem;
+}
+.dt-custom th,
+.dt-custom td {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+.dt-custom thead tr {
+  text-align: left;
+  color: var(--kt-gray-400);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+.dt-custom tbody .odd {
+  background-color: var(--kt-gray-100)
+}
+.dt-custom tbody,
+.dt-custom tbody .odd th,
+.dt-custom tbody .even th {
+  font-size: 1.075rem;
+  font-weight: 500;
+  color: var(--kt-gray-800)
+}
+.dtcustom-btn-sm .btn {
+  padding: calc(0.55rem + 1px) calc(1.25rem + 1px) !important; 
+  border-radius: 0.425rem;
+  font-size: 0.925rem !important;
+  background-color: var(--kt-gray-200) !important;
+}
