@@ -1,3 +1,3 @@
 <template>
-  <h1>Tickets</h1>
+  <h1>Ticketssss</h1>
 </template>
