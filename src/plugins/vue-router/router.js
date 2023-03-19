@@ -19,7 +19,7 @@ const routes = {
           component: () => import("@/views/Shared/Error/InternalError.vue"),
         },
 
-        //Tickets
+        //Administrador
         {
           path: "/tickets",
           component: BaseController,
@@ -27,7 +27,27 @@ const routes = {
             {
               path: "/tickets/index",
               component: () => import("@/views/Tickets/Index.vue"),
-            }
+            },
+          ]
+        },
+        {
+          path: "/computadoras",
+          component: BaseController,
+          children: [
+            {
+              path: "/computadoras/index",
+              component: () => import("@/views/Computadoras/Index.vue"),
+            },
+          ]
+        },
+        {
+          path: "/empleados",
+          component: BaseController,
+          children: [
+            {
+              path: "/empleados/index",
+              component: () => import("@/views/Empleados/Index.vue"),
+            },
           ]
         }
 

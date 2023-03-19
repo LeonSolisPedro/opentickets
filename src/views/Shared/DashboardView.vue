@@ -12,8 +12,8 @@
 				</div>
 				<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 d-lg-none">
 					<router-link to="/">
-						<img alt="Logo" src="@/assets/media/logos/default-small.svg" class="theme-light-show h-30px" />
-						<img alt="Logo" src="@/assets/media/logos/default-small-dark.svg" class="theme-dark-show h-30px" />
+						<img alt="Logo" src="@/assets/media/logos/default-small.svg" class="theme-light-show h-35px" />
+						<img alt="Logo" src="@/assets/media/logos/default-small-dark.svg" class="theme-dark-show h-35px" />
 					</router-link>
 				</div>
 				<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
@@ -55,7 +55,7 @@
 				data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 				<div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
 					<router-link to="/">
-						<img alt="Logo" src="@/assets/media/logos/default-dark.svg" class="h-30px app-sidebar-logo-default" />
+						<img alt="Logo" src="@/assets/media/logos/default-dark.svg" class="h-40px app-sidebar-logo-default" />
 					</router-link>
 					<div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-sm h-30px w-30px rotate" v-kttoggle
 						data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
@@ -73,13 +73,29 @@
 						<div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-3" id="#kt_app_sidebar_menu"
 							v-ktmenu data-kt-menu="true" data-kt-menu-expand="false">
 
-              <!--#region Tickets -->
+              <!--#region Administrador -->
 							<div class="menu-item">
-								<router-link to="/" class="menu-link">
+								<router-link to="/tickets" class="menu-link">
 								  <span class="menu-icon">
 										<font-awesome-icon icon="fa-solid fa-ticket" />
 									</span>
 									<span class="menu-title">Tickets</span>
+								</router-link>
+							</div>
+							<div class="menu-item">
+								<router-link to="/computadoras" class="menu-link">
+								  <span class="menu-icon">
+										<font-awesome-icon icon="fa-solid fa-computer" />
+									</span>
+									<span class="menu-title">Computadoras</span>
+								</router-link>
+							</div>
+							<div class="menu-item">
+								<router-link to="/empleados" class="menu-link">
+								  <span class="menu-icon">
+										<font-awesome-icon icon="fa-solid fa-user" />
+									</span>
+									<span class="menu-title">Empleados</span>
 								</router-link>
 							</div>
 							
