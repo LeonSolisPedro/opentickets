@@ -1,6 +1,6 @@
 # Open Tickets
 
-Open Tickets, es un sistema de tickets de asistencia técnica, que te permitirá priorizar tus actividades y atender equipos de cómputo defectuosos
+[Open Tickets](https://opentickets.wintercr.com/), es un sistema de tickets de asistencia técnica, que te permitirá priorizar tus actividades y atender equipos de cómputo defectuosos
 
 El sistema te permitirá:
 - Levantar tickets
