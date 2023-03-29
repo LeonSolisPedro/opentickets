@@ -6,7 +6,7 @@ const redirects = (to, from, next) => {
   if (redirectdashboards) {
     const coolurl = to.path.replace(/\/$/, "");
 
-    next({ path: `${coolurl}/tickets`, replace: true })
+    next({ path: `${coolurl}/computadoras`, replace: true })
   }
 
   
