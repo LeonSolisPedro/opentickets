@@ -1,3 +1,3 @@
 <template>
-  <h1>Ticketssss</h1>
+  <h1>Aqui se mostrarán los tickets por prioridad</h1>
 </template>
