@@ -93,10 +93,10 @@ export default {
       const valid = await this.v$.$validate()
       if (!valid) return
       const block = new KTBlockUI(this.$el)
-      await axios.put(`computadoras/${this.computadora.id}`, this.computadora)
+      const result = await axios.put(`computadoras/${this.computadora.id}`, this.computadora)
       await swal.fire("Success", "Computadora editado con éxito", "success")
       block.releaseDestroy()
-      this.$emit("refresh")
+      this.$emit("update", result.data)
       Modal.getInstance(this.$el.parentElement.parentElement).hide()
     },
     resetModal() {
