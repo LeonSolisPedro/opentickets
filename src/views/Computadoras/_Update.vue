@@ -2,7 +2,7 @@
   <div class="modal-content">
 
     <div class="modal-header">
-      <h3 class="modal-title">Actualizar computadora</h3>
+      <h3 class="modal-title">Editar computadora</h3>
       <button class="btn-close btn btn-icon btn-sm btn-active-light-primary me-0" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -51,7 +51,7 @@
 
     <div class="modal-footer">
       <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-      <button @click="update()" type="button" class="btn btn-primary">Actualizar</button>
+      <button @click="update()" type="button" class="btn btn-primary">Editar</button>
     </div>
   </div>
 </template>
@@ -93,10 +93,10 @@ export default {
       const valid = await this.v$.$validate()
       if (!valid) return
       const block = new KTBlockUI(this.$el)
-      const result = await axios.put(`computadoras/${this.computadora.id}`, this.computadora)
-      await swal.fire("Success", "Computadora actualizada con éxito", "success")
+      await axios.put(`computadoras/${this.computadora.id}`, this.computadora)
+      await swal.fire("Success", "Computadora editado con éxito", "success")
       block.releaseDestroy()
-      this.$emit("update", result.data)
+      this.$emit("refresh")
       Modal.getInstance(this.$el.parentElement.parentElement).hide()
     },
     resetModal() {
@@ -104,7 +104,7 @@ export default {
       this.v$.$reset()
     },
     async openModal(id){
-      const result = await axios.get(`computadoras/getcomputadora/${id}`)
+      const result = await axios.get(`computadoras/getcomputadoras/${id}`)
       this.computadora = result.data
       Modal.getOrCreateInstance(this.$el.parentElement.parentElement).show()
     }

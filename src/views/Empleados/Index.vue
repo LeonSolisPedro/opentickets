@@ -30,7 +30,7 @@
                 </button>
                 <ul class="dropdown-menu">
                   <li><button class="dropdown-item" @click="$refs.update.openModal(empleado.id)">Editar</button></li>
-                  <li><button @click="$globalDelete('/empleados/', empleado.id, 'Empleado')" class="dropdown-item">Eliminar</button></li>
+                  <li><button @click="$globalDelete('empleados', empleado.id, 'Empleado')" class="dropdown-item">Eliminar</button></li>
                 </ul>
               </div>
             </th>
@@ -40,11 +40,11 @@
     </div>
 
     <div class="modal fade" tabindex="-1" id="create">
-      <div class="modal-dialog"><Create @create="$globalAdd($event)"/></div>
+      <div class="modal-dialog"><Create @refresh="refresh()"/></div>
     </div>
 
     <div class="modal fade" tabindex="-1">
-      <div class="modal-dialog"><Update @update="$globalEdit($event)" ref="update"/></div>
+      <div class="modal-dialog"><Update @refresh="refresh()" ref="update"/></div>
     </div>
 
   </div>
@@ -60,6 +60,12 @@ export default {
   components: {
     Create: () => import("./_Create.vue"),
     Update: () => import("./_Update.vue")
+  },
+  methods:{
+    async refresh(){
+      const result = await axios.get("empleados")
+      this.lista = result.data
+    }
   },
   async beforeRouteEnter(to, from, next) {
     const result = await axios.get("empleados")
