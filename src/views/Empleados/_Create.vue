@@ -74,10 +74,10 @@ export default {
       const valid = await this.v$.$validate()
       if (!valid) return
       const block = new KTBlockUI(this.$el)
-      const result = await axios.post("empleados", this.empleado)
+      await axios.post("empleados", this.empleado)
       await swal.fire("Success", "Empleado agregado con éxito", "success")
       block.releaseDestroy()
-      this.$emit("create", result.data)
+      this.$emit("refresh")
       Modal.getInstance(this.$el.parentElement.parentElement).hide()
     },
     resetModal() {
