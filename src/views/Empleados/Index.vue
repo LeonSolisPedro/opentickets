@@ -21,7 +21,18 @@
         <tbody>
           <tr v-for="empleado in lista" :key="empleado.id">
             <th>{{ empleado.id }}</th>
-            <th>{{ empleado.nombreEmpleado }}</th>
+            <th>
+              <div class="d-flex align-items-center">
+                <div class="symbol symbol-40px symbol-circle">
+                  <div class="symbol-label fs-3 bg-opacity-10 bg-info text-dark">
+                    {{ empleado.nombreEmpleado.charAt(0).toUpperCase() }}
+                  </div>
+                </div>
+                <div class="ms-4">
+                  {{ empleado.nombreEmpleado }}
+                </div>
+              </div>
+            </th>
             <th>{{ empleado.nombreDepartamento }}</th>
             <th>
               <div class="dropdown">

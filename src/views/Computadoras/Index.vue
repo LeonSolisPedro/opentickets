@@ -21,7 +21,17 @@
         <tbody>
           <tr v-for="computadora in lista" :key="computadora.id">
             <th>{{ computadora.id }}</th>
-            <th>{{ computadora.marcaModel }}</th>
+            <th>
+              <div class="d-flex align-items-center">
+                <div class="symbol symbol-50px">
+                  <img v-if="computadora.tipoComputadora == 0" src="@/assets/media/escritorio.webp" />
+                  <img v-if="computadora.tipoComputadora == 1" src="@/assets/media/laptop.webp" />
+                </div>
+                <div class="ms-3">
+                  {{ computadora.marcaModel }}
+                </div>
+              </div>
+            </th>
             <th>{{ computadora.sistemaOperativo }}</th>
             <th>
               <div class="dropdown">
@@ -40,11 +50,15 @@
     </div>
 
     <div class="modal fade" tabindex="-1" id="create">
-      <div class="modal-dialog"><Create @refresh="refresh()"/></div>
+      <div class="modal-dialog">
+        <Create @refresh="refresh()" />
+      </div>
     </div>
 
     <div class="modal fade" tabindex="-1">
-      <div class="modal-dialog"><Update @refresh="refresh()" ref="update"/></div>
+      <div class="modal-dialog">
+        <Update @refresh="refresh()" ref="update" />
+      </div>
     </div>
 
   </div>

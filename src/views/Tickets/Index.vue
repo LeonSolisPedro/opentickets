@@ -13,27 +13,44 @@
         <thead>
           <tr>
             <th>Prioridad</th>
+            <th>Problema</th>
             <th>Empleado</th>
-            <th>Computadora</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="ticket in lista" :key="ticket.id">
             <th>
-              <span v-if="ticket.prioridad == 0" class="badge badge-success">Baja</span>
-              <span v-if="ticket.prioridad == 1" class="badge badge-warning">Media</span>
-              <span v-if="ticket.prioridad == 2" class="badge badge-danger">Alta</span>
+              <span v-if="ticket.solucion != null" class="badge badge-light-dark">Solucionado</span>
+              <span v-else-if="ticket.prioridad == 0" class="badge badge-success">Baja</span>
+              <span v-else-if="ticket.prioridad == 1" class="badge badge-warning">Media</span>
+              <span v-else-if="ticket.prioridad == 2" class="badge badge-danger">Alta</span>
             </th>
-            <th>{{ ticket.computadora.empleado.nombreEmpleado }}</th>
-            <th>{{ ticket.computadora.marcaModel }}</th>
+            <th style="width: 30%">
+              {{ ticket.descripcionProblema.length > 84 ? `${ticket.descripcionProblema.substring(0, 90)}...` :
+                ticket.descripcionProblema }}
+            </th>
+            <th>
+              <div class="d-flex align-items-center">
+                <div class="symbol symbol-40px symbol-circle">
+                  <div class="symbol-label fs-3 bg-opacity-10 bg-info text-dark">
+                    {{ ticket.computadora.empleado.nombreEmpleado.charAt(0).toUpperCase() }}
+                  </div>
+                </div>
+                <div class="ms-4">
+                  {{ ticket.computadora.empleado.nombreEmpleado }}
+                </div>
+              </div>
+            </th>
             <th>
               <div class="dropdown">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
                   Acciones
                 </button>
                 <ul class="dropdown-menu">
-                  <li><button class="dropdown-item" @click="$refs.update.openModal(ticket.id)">Editar</button></li>
+                  <li><button class="dropdown-item" @click="$refs.update.openModal(ticket.id)">Ver detalles</button></li>
+                  <li v-if="ticket.solucion === null"><button class="dropdown-item" @click="$refs.agregarsolucion.openModal(ticket.id)">Agregar solución</button></li>
+                  <li v-if="ticket.solucion !== null"><button class="dropdown-item" @click="$refs.versolucion.openModal(ticket.solucion)">Ver solución</button></li>
                 </ul>
               </div>
             </th>
@@ -43,11 +60,27 @@
     </div>
 
     <div class="modal fade" tabindex="-1" id="create">
-      <div class="modal-dialog"><Create @refresh="refresh()"/></div>
+      <div class="modal-dialog">
+        <Create @refresh="refresh()" />
+      </div>
     </div>
 
     <div class="modal fade" tabindex="-1">
-      <div class="modal-dialog"><Update @refresh="refresh()" ref="update"/></div>
+      <div class="modal-dialog">
+        <Update @refresh="refresh()" ref="update" />
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <AgregarSolucion @refresh="refresh()" ref="agregarsolucion" />
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <VerSolucion @refresh="refresh()" ref="versolucion" />
+      </div>
     </div>
 
   </div>
@@ -62,13 +95,15 @@ export default {
   },
   components: {
     Create: () => import("./_Create.vue"),
-    Update: () => import("./_Update.vue")
+    Update: () => import("./_Update.vue"),
+    AgregarSolucion: () => import("./_AgregarSolucion.vue"),
+    VerSolucion: () => import("./_VerSolucion.vue")
   },
   methods: {
     async refresh() {
       const result = await axios.get("tickets/gettickets")
       this.lista = result.data
-    }
+    },
   },
   async beforeRouteEnter(to, from, next) {
     const result = await axios.get("tickets/gettickets")

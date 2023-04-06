@@ -83,19 +83,19 @@
 								</router-link>
 							</div>
 							<div class="menu-item">
-								<router-link to="/computadoras" class="menu-link">
-								  <span class="menu-icon">
-										<font-awesome-icon icon="fa-solid fa-computer" />
-									</span>
-									<span class="menu-title">Computadoras</span>
-								</router-link>
-							</div>
-							<div class="menu-item">
 								<router-link to="/empleados" class="menu-link">
 								  <span class="menu-icon">
 										<font-awesome-icon icon="fa-solid fa-user" />
 									</span>
 									<span class="menu-title">Empleados</span>
+								</router-link>
+							</div>
+							<div class="menu-item">
+								<router-link to="/computadoras" class="menu-link">
+								  <span class="menu-icon">
+										<font-awesome-icon icon="fa-solid fa-computer" />
+									</span>
+									<span class="menu-title">Computadoras</span>
 								</router-link>
 							</div>
 							
