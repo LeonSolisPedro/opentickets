@@ -57,7 +57,8 @@ export default {
         id: 0,
         idComputadora: null,
         prioridad: null,
-        descripcionProblema: ""
+        descripcionProblema: "",
+        solucion: null
       },
       computadoras: []
     }
