@@ -19,7 +19,7 @@
         <div class="col-sm-12">
           <label class="required form-label">Marca y Modelo</label>
           <input type="text" v-model="computadora.marcaModel" class="form-control form-control-solid" placeholder="Aspire 5" />
-          <div class="invalid-feedback"> {{ v$.computadora.marcaModel.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.computadora.marcaModel.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="form-label">Numero de Serie</label>
@@ -29,22 +29,22 @@
         <div class="col-sm-12">
           <label class="required form-label">Procesador</label>
           <input type="text" v-model="computadora.procesador" class="form-control form-control-solid" placeholder="i5 5200" />
-          <div class="invalid-feedback"> {{ v$.computadora.procesador.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.computadora.procesador.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">RAM</label>
           <input type="text" v-model="computadora.ram" class="form-control form-control-solid" placeholder="8 GB" />
-          <div class="invalid-feedback"> {{ v$.computadora.ram.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.computadora.ram.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">Disco</label>
           <input type="text" v-model="computadora.disco" class="form-control form-control-solid" placeholder="1TB" />
-          <div class="invalid-feedback"> {{ v$.computadora.disco.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.computadora.disco.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">Sistema Operativo</label>
           <input type="text" v-model="computadora.sistemaOperativo" class="form-control form-control-solid" placeholder="Ubuntu 20" />
-          <div class="invalid-feedback"> {{ v$.computadora.sistemaOperativo.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.computadora.sistemaOperativo.$errors[0]?.$message }} </span>
         </div>
       </form>
     </div>
