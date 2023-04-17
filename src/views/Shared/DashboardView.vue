@@ -137,10 +137,10 @@
 <script>
 export default {
   mounted () {
-    this.$setupTemplate()
+    this.$setupLayout()
   },
   destroyed () {
-    this.$destroyTemplate()
+    this.$destroyLayout()
   },
   //We are redirecting to corresponding dashboards
   RedirectToDashboards() {
