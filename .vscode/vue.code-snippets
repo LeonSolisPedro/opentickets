@@ -11,7 +11,7 @@
     "description": "Script Options API",
     "scope": "vue"
   },
-  "Crea rápidamente una página de Añadir vacía": {
+  "Crea rápidamente una página de añadir vacía": {
     "prefix": "ozelot:create",
     "body": [
       "<template>",
@@ -31,12 +31,12 @@
       "        <div class=\"col-sm-6\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title1\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "        <div class=\"col-sm-6\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title2\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "      </form>",
       "    </div>",
@@ -81,11 +81,11 @@
       "}",
       "</script>"
     ],
-    "description": "Crea rápidamente una página de Añadir vacía",
+    "description": "Crea rápidamente una página de añadir vacía",
     "scope": "vue"
   },
-  "Crea rápidamente una página de Edición vacía": {
-    "prefix": "ozelot:update",
+  "Crea rápidamente una página de edición vacía": {
+    "prefix": "ozelot:edit",
     "body": [
       "<template>",
       "  <div class=\"card card-flush datatable\">",
@@ -94,7 +94,7 @@
       "      <h2 class=\"card-title\">Editar ${1:todo}</h2>",
       "      <div class=\"card-toolbar\">",
       "        <router-link to=\"..index\" class=\"btn btn-flex btn-light\">Regresar</router-link>",
-      "        <button @click.prevent=\"update()\" class=\"btn btn-flex btn-primary\">Editar</button>",
+      "        <button @click.prevent=\"edit()\" class=\"btn btn-flex btn-primary\">Editar</button>",
       "      </div>",
       "    </div>",
       "",
@@ -104,12 +104,12 @@
       "        <div class=\"col-sm-6\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title1\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "        <div class=\"col-sm-6\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title2\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "      </form>",
       "    </div>",
@@ -145,7 +145,7 @@
       "    next(vm => { vm.${1:todo} = result.data })",
       "  },",
       "  methods: {",
-      "    async update() {",
+      "    async edit() {",
       "      const valid = await this.v$.$$validate()",
       "      if (!valid) return",
       "      const block = new KTBlockUI(this.$$el)",
@@ -158,10 +158,10 @@
       "}",
       "</script>"
     ],
-    "description": "Crea rápidamente una página de Edición vacía",
+    "description": "Crea rápidamente una página de edición vacía",
     "scope": "vue"
   },
-  "Crea rápidamente una página de Inicio vacía": {
+  "Crea rápidamente una página de inicio vacía": {
     "prefix": "ozelot:index",
     "body": [
       "<template>",
@@ -195,7 +195,7 @@
       "                  Acciones",
       "                </button>",
       "                <ul class=\"dropdown-menu\">",
-      "                  <li><router-link :to=\"'update/' + ${1:todo}.id\" class=\"dropdown-item\">Editar</router-link></li>",
+      "                  <li><router-link :to=\"'edit/' + ${1:todo}.id\" class=\"dropdown-item\">Editar</router-link></li>",
       "                  <li><button @click=\"$$globalDelete('${1:todo}s', ${1:todo}.id, '${1:todo}')\" class=\"dropdown-item\">Eliminar</button></li>",
       "                </ul>",
       "              </div>",
@@ -222,10 +222,10 @@
       "}",
       "</script>"
     ],
-    "description": "Crea rápidamente una página de Inicio vacía",
+    "description": "Crea rápidamente una página de inicio vacía",
     "scope": "vue"
   },
-  "Crea rápidamente una página de Inicio vacía para modales": {
+  "Crea rápidamente una página de inicio vacía para modales": {
     "prefix": "ozelot:indexmodal",
     "body": [
       "<template>",
@@ -259,7 +259,7 @@
       "                  Acciones",
       "                </button>",
       "                <ul class=\"dropdown-menu\">",
-      "                  <li><button class=\"dropdown-item\" @click=\"$$refs.update.openModal(${1:todo}.id)\">Editar</button></li>",
+      "                  <li><button class=\"dropdown-item\" @click=\"$$refs.edit.openModal(${1:todo}.id)\">Editar</button></li>",
       "                  <li><button @click=\"$$globalDelete('${1:todo}s', ${1:todo}.id, '${1:todo}')\" class=\"dropdown-item\">Eliminar</button></li>",
       "                </ul>",
       "              </div>",
@@ -274,7 +274,7 @@
       "    </div>",
       "",
       "    <div class=\"modal fade\" tabindex=\"-1\">",
-      "      <div class=\"modal-dialog modal-lg\"><Update @refresh=\"refresh()\" ref=\"update\"/></div>",
+      "      <div class=\"modal-dialog modal-lg\"><Edit @refresh=\"refresh()\" ref=\"edit\"/></div>",
       "    </div>",
       "",
       "  </div>",
@@ -289,7 +289,7 @@
       "  },",
       "  components: {",
       "    Create: () => import(\"./_Create.vue\"),",
-      "    Update: () => import(\"./_Update.vue\")",
+      "    Edit: () => import(\"./_Edit.vue\")",
       "  },",
       "  methods: {",
       "    async refresh() {",
@@ -304,10 +304,10 @@
       "}",
       "</script>"
     ],
-    "description": "Crea rápidamente una página de Inicio vacía para modales",
+    "description": "Crea rápidamente una página de inicio vacía para modales",
     "scope": "vue"
   },
-  "Crea rápidamente una página de Añadir vacía para modales": {
+  "Crea rápidamente una página de añadir vacía para modales": {
     "prefix": "ozelot:createmodal",
     "body": [
       "<template>",
@@ -324,12 +324,12 @@
       "        <div class=\"col-sm-12\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title1\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "        <div class=\"col-sm-12\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title2\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "      </form>",
       "    </div>",
@@ -391,8 +391,8 @@
     "description": "Crea rápidamente una página de Añadir vacía para modales",
     "scope": "vue"
   },
-  "Crea rápidamente una página de Edición vacía para modales": {
-    "prefix": "ozelot:updatemodal",
+  "Crea rápidamente una página de edición vacía para modales": {
+    "prefix": "ozelot:editmodal",
     "body": [
       "<template>",
       "  <div class=\"modal-content\">",
@@ -408,19 +408,19 @@
       "        <div class=\"col-sm-12\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title1\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title1.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "        <div class=\"col-sm-12\">",
       "          <label class=\"required form-label\">Título</label>",
       "          <input type=\"text\" v-model=\"${1:todo}.title2\" class=\"form-control form-control-solid\" placeholder=\"Temporal\" />",
-      "          <div class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </div>",
+      "          <span class=\"invalid-feedback\"> {{ v$.${1:todo}.title2.$$errors[0]?.$$message }} </span>",
       "        </div>",
       "      </form>",
       "    </div>",
       "",
       "    <div class=\"modal-footer\">",
       "      <button type=\"button\" class=\"btn btn-light\" data-bs-dismiss=\"modal\">Cancelar</button>",
-      "      <button @click=\"update()\" type=\"button\" class=\"btn btn-primary\">Editar</button>",
+      "      <button @click=\"edit()\" type=\"button\" class=\"btn btn-primary\">Editar</button>",
       "    </div>",
       "  </div>",
       "</template>",
@@ -450,7 +450,7 @@
       "    }",
       "  },",
       "  methods: {",
-      "    async update() {",
+      "    async edit() {",
       "      const valid = await this.v$.$$validate()",
       "      if (!valid) return",
       "      const block = new KTBlockUI(this.$$el)",
@@ -477,7 +477,7 @@
       "}",
       "</script>"
     ],
-    "description": "Crea rápidamente una página de Edición vacía para modales",
+    "description": "Crea rápidamente una página de edición vacía para modales",
     "scope": "vue"
   }
 }

@@ -1,7 +1,7 @@
 <template>
 	<div class="card">
 		<div class="card-body text-center d-flex flex-column flex-center py-15 px-10 py-lg-15 px-lg-15"
-			style="min-height: 67vh">
+			style="min-height: 68vh">
 			<h1 class="fw-bolder fs-2hx text-gray-900 mb-4">Error Interno de Servidor</h1>
 			<div class="fw-semibold fs-6 text-gray-500 mb-9">Por favor, inténtelo más tarde.</div>
 			<div class="mb-9">

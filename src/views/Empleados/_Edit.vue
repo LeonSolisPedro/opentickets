@@ -17,26 +17,26 @@
               {{ compu.nombreComputadora }}
             </option>
           </select>
-          <div class="invalid-feedback"> {{ v$.empleado.idComputadora.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.empleado.idComputadora.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">Nombre del Empleado</label>
           <input type="text" v-model="empleado.nombreEmpleado" class="form-control form-control-solid"
             placeholder="Juan Pancho" />
-          <div class="invalid-feedback"> {{ v$.empleado.nombreEmpleado.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.empleado.nombreEmpleado.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">Nombre del Departamento</label>
           <input type="text" v-model="empleado.nombreDepartamento" class="form-control form-control-solid"
             placeholder="Ventas" />
-          <div class="invalid-feedback"> {{ v$.empleado.nombreDepartamento.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.empleado.nombreDepartamento.$errors[0]?.$message }} </span>
         </div>
       </form>
     </div>
 
     <div class="modal-footer">
       <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-      <button @click="update()" type="button" class="btn btn-primary">Editar</button>
+      <button @click="edit()" type="button" class="btn btn-primary">Editar</button>
     </div>
   </div>
 </template>
@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-    async update() {
+    async edit() {
       const valid = await this.v$.$validate()
       if (!valid) return
       const block = new KTBlockUI(this.$el)

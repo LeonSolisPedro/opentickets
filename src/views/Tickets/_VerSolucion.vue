@@ -22,7 +22,7 @@
         <div class="col-sm-12">
           <label class="required form-label">Describa la solución:</label>
           <textarea disabled v-model="solucion.solucionCampo" class="form-control form-control-solid resize-none" rows="5" placeholder="Describa detalladamente la solución"></textarea>
-          <div class="invalid-feedback"></div>
+          <span class="invalid-feedback"></span>
         </div>
       </form>
     </div>

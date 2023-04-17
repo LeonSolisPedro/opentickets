@@ -17,7 +17,7 @@
               {{ compu.nombreEmpleado }} - {{ compu.nombreComputadora }}
             </option>
           </select>
-          <div class="invalid-feedback"> {{ v$.ticket.idComputadora.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.ticket.idComputadora.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">Prioridad:</label>
@@ -27,19 +27,19 @@
             <option value="1">Media</option>
             <option value="2">Alta</option>
           </select>
-          <div class="invalid-feedback"> {{ v$.ticket.prioridad.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.ticket.prioridad.$errors[0]?.$message }} </span>
         </div>
         <div class="col-sm-12">
           <label class="required form-label">Describa el problema:</label>
           <textarea :disabled="ticket.solucion != null" v-model="ticket.descripcionProblema" class="form-control form-control-solid resize-none" rows="5" placeholder="Describa detalladamente el problema presentado"></textarea>
-          <div class="invalid-feedback"> {{ v$.ticket.descripcionProblema.$errors[0]?.$message }} </div>
+          <span class="invalid-feedback"> {{ v$.ticket.descripcionProblema.$errors[0]?.$message }} </span>
         </div>
       </form>
     </div>
 
     <div class="modal-footer">
       <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-      <button v-if="ticket.solucion == null" @click="update()" type="button" class="btn btn-primary">Editar</button>
+      <button v-if="ticket.solucion == null" @click="edit()" type="button" class="btn btn-primary">Editar</button>
     </div>
   </div>
 </template>
@@ -73,7 +73,7 @@ export default {
     }
   },
   methods: {
-    async update() {
+    async edit() {
       const valid = await this.v$.$validate()
       if (!valid) return
       const block = new KTBlockUI(this.$el)
