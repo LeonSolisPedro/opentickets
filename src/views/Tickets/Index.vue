@@ -48,7 +48,7 @@
                   Acciones
                 </button>
                 <ul class="dropdown-menu">
-                  <li><button class="dropdown-item" @click="$refs.update.openModal(ticket.id)">Ver detalles</button></li>
+                  <li><button class="dropdown-item" @click="$refs.edit.openModal(ticket.id)">Ver detalles</button></li>
                   <li v-if="ticket.solucion === null"><button class="dropdown-item" @click="$refs.agregarsolucion.openModal(ticket.id)">Agregar solución</button></li>
                   <li v-if="ticket.solucion !== null"><button class="dropdown-item" @click="$refs.versolucion.openModal(ticket.solucion)">Ver solución</button></li>
                 </ul>
@@ -67,7 +67,7 @@
 
     <div class="modal fade" tabindex="-1">
       <div class="modal-dialog">
-        <Update @refresh="refresh()" ref="update" />
+        <Edit @refresh="refresh()" ref="edit" />
       </div>
     </div>
 
@@ -95,7 +95,7 @@ export default {
   },
   components: {
     Create: () => import("./_Create.vue"),
-    Update: () => import("./_Update.vue"),
+    Edit: () => import("./_Edit.vue"),
     AgregarSolucion: () => import("./_AgregarSolucion.vue"),
     VerSolucion: () => import("./_VerSolucion.vue")
   },

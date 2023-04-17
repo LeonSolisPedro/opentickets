@@ -36,7 +36,7 @@
 
     <div class="modal-footer">
       <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-      <button @click="update()" type="button" class="btn btn-primary">Editar</button>
+      <button @click="edit()" type="button" class="btn btn-primary">Editar</button>
     </div>
   </div>
 </template>
@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-    async update() {
+    async edit() {
       const valid = await this.v$.$validate()
       if (!valid) return
       const block = new KTBlockUI(this.$el)

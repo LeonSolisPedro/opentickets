@@ -39,7 +39,7 @@
                   Acciones
                 </button>
                 <ul class="dropdown-menu">
-                  <li><button class="dropdown-item" @click="$refs.update.openModal(computadora.id)">Editar</button></li>
+                  <li><button class="dropdown-item" @click="$refs.edit.openModal(computadora.id)">Editar</button></li>
                   <li><button @click="$globalDelete('computadoras', computadora.id, 'Computadora')" class="dropdown-item">Eliminar</button></li>
                 </ul>
               </div>
@@ -57,7 +57,7 @@
 
     <div class="modal fade" tabindex="-1">
       <div class="modal-dialog">
-        <Update @refresh="refresh()" ref="update" />
+        <Edit @refresh="refresh()" ref="edit" />
       </div>
     </div>
 
@@ -73,7 +73,7 @@ export default {
   },
   components: {
     Create: () => import("./_Create.vue"),
-    Update: () => import("./_Update.vue")
+    Edit: () => import("./_Edit.vue")
   },
   methods: {
     async refresh() {
