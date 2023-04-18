@@ -94,7 +94,7 @@ export default {
       if (!valid) return
       const block = new KTBlockUI(this.$el)
       await axios.put(`computadoras/${this.computadora.id}`, this.computadora)
-      await swal.fire("Success", "Computadora editado con éxito", "success")
+      await swal.fire("Success", "Computadora editada con éxito", "success")
       block.releaseDestroy()
       this.$emit("refresh")
       Modal.getInstance(this.$el.parentElement.parentElement).hide()
