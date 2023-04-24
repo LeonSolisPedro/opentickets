@@ -6,7 +6,9 @@ const redirects = (to, from, next) => {
   if (redirectdashboards) {
     const coolurl = to.path.replace(/\/$/, "");
 
+    //Todo: Import here jwt library
     next({ path: `${coolurl}/tickets`, replace: true })
+    return
   }
 
   
@@ -16,8 +18,10 @@ const redirects = (to, from, next) => {
   if (redirectindex) {
     const coolurl = to.path.replace(/\/$/, "");
     next({ path: `${coolurl}/index`, replace: true })
+    return
   }
 
+  next()
 }
 
 
