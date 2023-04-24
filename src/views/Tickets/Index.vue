@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from "vue"
 export default {
   data() {
     return {
@@ -94,10 +95,10 @@ export default {
     }
   },
   components: {
-    Create: () => import("./_Create.vue"),
-    Edit: () => import("./_Edit.vue"),
-    AgregarSolucion: () => import("./_AgregarSolucion.vue"),
-    VerSolucion: () => import("./_VerSolucion.vue")
+    Create: defineAsyncComponent(() => import("./_Create.vue")),
+    Edit: defineAsyncComponent(() => import("./_Edit.vue")),
+    AgregarSolucion: defineAsyncComponent(() => import("./_AgregarSolucion.vue")),
+    VerSolucion: defineAsyncComponent(() => import("./_VerSolucion.vue"))
   },
   methods: {
     async refresh() {

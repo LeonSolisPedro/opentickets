@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from "vue"
 export default {
   data() {
     return {
@@ -69,8 +70,8 @@ export default {
     }
   },
   components: {
-    Create: () => import("./_Create.vue"),
-    Edit: () => import("./_Edit.vue")
+    Create: defineAsyncComponent(() => import("./_Create.vue")),
+    Edit: defineAsyncComponent(() => import("./_Edit.vue"))
   },
   methods: {
     async refresh() {
