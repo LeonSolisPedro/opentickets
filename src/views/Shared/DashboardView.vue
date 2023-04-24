@@ -139,8 +139,8 @@ export default {
   mounted () {
     this.$setupLayout()
   },
-  destroyed () {
-    this.$destroyLayout()
+  unmounted () {
+    this.$unmountLayout()
   },
   //We are redirecting to corresponding dashboards
   RedirectToDashboards() {
