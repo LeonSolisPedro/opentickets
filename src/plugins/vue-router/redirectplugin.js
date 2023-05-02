@@ -1,4 +1,4 @@
-const redirects = (to, from, next) => {
+const redirectplugin = (to, from, next) => {
 
   //We are redirecting to corresponding dashboards
   const lastComponents1 = Object.values(to.matched[to.matched?.length - 1]?.components ?? {});
@@ -25,4 +25,4 @@ const redirects = (to, from, next) => {
 }
 
 
-export default redirects
+export default redirectplugin
