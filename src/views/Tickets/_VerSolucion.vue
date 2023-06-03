@@ -14,7 +14,7 @@
           <label class="required form-label">Cambios:</label>
           <div class="ms-9 mt-3 form-check form-check-custom form-check-solid">
             <input disabled type="checkbox" v-model="solucion.modificoCompu" class="form-check-input" />
-            <label class="form-check-label" for="flexCheckDefault">
+            <label class="form-check-label">
               Computadora Modificada
             </label>
           </div>

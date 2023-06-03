@@ -1,8 +1,9 @@
-import { createWebHistory } from "vue-router"
-import DashboardView from "@/views/Shared/DashboardView.vue"
-import BaseController from "@/views/Shared/BaseController.vue"
+import { createRouter, createWebHistory } from "vue-router"
+import { redirectIndex, redirectRoles } from "./redirects"
+import DashboardView from "../views/Shared/DashboardView.vue"
+import EmptyView from "../views/Shared/EmptyView.vue"
 
-const routes = {
+const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: "active",
   base: import.meta.env.BASE_URL,
@@ -11,19 +12,11 @@ const routes = {
       path: "/",
       component: DashboardView,
       children: [
-        {
-          path: "/notfound",
-          component: () => import("@/views/Shared/Error/NotFound.vue"),
-        },
-        {
-          path: "/internalerror",
-          component: () => import("@/views/Shared/Error/InternalError.vue"),
-        },
-
+        
         //Administrador
         {
           path: "/tickets",
-          component: BaseController,
+          component: EmptyView,
           children: [
             {
               path: "/tickets/index",
@@ -33,7 +26,7 @@ const routes = {
         },
         {
           path: "/computadoras",
-          component: BaseController,
+          component: EmptyView,
           children: [
             {
               path: "/computadoras/index",
@@ -43,14 +36,24 @@ const routes = {
         },
         {
           path: "/empleados",
-          component: BaseController,
+          component: EmptyView,
           children: [
             {
               path: "/empleados/index",
               component: () => import("@/views/Empleados/Index.vue"),
             },
           ]
-        }
+        },
+        
+        //Error Pages
+        {
+          path: "/notfound",
+          component: () => import("@/views/Shared/Error/NotFound.vue"),
+        },
+        {
+          path: "/internalerror",
+          component: () => import("@/views/Shared/Error/InternalError.vue"),
+        },
 
       ]
     },
@@ -58,6 +61,9 @@ const routes = {
       path: '/:catchAll(.*)', redirect:'notfound'
     }
   ]
-}
+});
 
-export default routes
+router.beforeEach((to, from, next) => redirectRoles(to, from, next))
+router.beforeEach((to, from, next) => redirectIndex(to, from, next))
+
+export default router

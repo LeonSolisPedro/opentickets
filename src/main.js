@@ -3,7 +3,7 @@ import App from "./App.vue"
 import fontawesome from "./plugins/fontawesome"
 import sweetalert from "./plugins/sweetalert2"
 import axios from "./plugins/axios"
-import router from "./plugins/vue-router"
+import router from "./router"
 import keenBootstrap from "./plugins/keen-bootstrap"
 
 //Global Plugins
