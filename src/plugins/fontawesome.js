@@ -9,6 +9,6 @@ export default {
   install(app){
     config.autoAddCss = false;
     library.add( faAnglesLeft,  faHeart, faBars, faTicket, faComputer, faUser)
-    app.component("font-awesome-icon", FontAwesomeIcon)
+    app.component("FontAwesomeIcon", FontAwesomeIcon)
   }
 }
